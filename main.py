@@ -26,10 +26,7 @@ while len(guessed_states) < 26:
     ascii_answer = normalize('NFKD', answer).encode('ASCII', 'ignore').decode('ASCII')
 
     if answer == 'Sair':
-        missing_states = []
-        for state in data.state:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [state for state in data.states if state not in guessed_states]
         new_data = pandas.DataFrame(missing_states).to_csv("estados_faltando.csv")
         break
 
